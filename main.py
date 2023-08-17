@@ -1,7 +1,7 @@
 
 
-old_file_location = "GSC-OLD-DISAVOW-CANALWALK.txt"
-new_file_location = "SEM-NEW-DISAVOW-CANALWALK.txt"
+old_file_location = ""
+new_file_location = ""
 
 with open(old_file_location) as old_file:
     old_content = old_file.readlines()
@@ -26,7 +26,7 @@ for i in new_domains:
 # Total new domains added
 print(f"\nTotal new domains disavowed: {len(new_domains)}")
 
-# Writing a text file with the OLD and NEW disavowed links to put in Google Search Console/
+# Writing a text file with the OLD and NEW disavowed links to put in Google Search Console
 with open("NEW_DISAVOWED + OLD_DISAVOWED.txt", "w") as new_disavowed_old_disavowed:
     for i in old_content_stripped:
         new_disavowed_old_disavowed.writelines(f"{i}\n")
