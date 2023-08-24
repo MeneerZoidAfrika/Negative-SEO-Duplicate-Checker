@@ -1,4 +1,6 @@
 
+CLIENT = "Canalwalk"
+
 OLD_FILE_LOCATION = "GSC-OLD-DISAVOW-CANALWALK.txt"
 NEW_FILE_LOCATION = "SEM-NEW-DISAVOW-CANALWALK.txt"
 
@@ -40,7 +42,7 @@ for i in new_domains:
 print(f"\nTotal new domains disavowed: {len(new_domains)}")
 
 # Writing a text file with the OLD and NEW disavowed links to put in Google Search Console
-with open("NEW_DISAVOWED + OLD_DISAVOWED.txt", "w") as new_disavowed_old_disavowed:
+with open(f"{CLIENT} NEW_DISAVOWED + OLD_DISAVOWED.txt", "w") as new_disavowed_old_disavowed:
     for i in old_content_stripped:
         new_disavowed_old_disavowed.writelines(f"{i}\n")
 
