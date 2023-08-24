@@ -1,16 +1,29 @@
 
+OLD_FILE_LOCATION = "GSC-OLD-DISAVOW-CANALWALK.txt"
+NEW_FILE_LOCATION = "SEM-NEW-DISAVOW-CANALWALK.txt"
 
-old_file_location = ""
-new_file_location = ""
+def remove_duplicates(input_list):
+    output_list = []
+    for item in input_list:
+        if item not in output_list:
+            output_list.append(item)
+    return output_list
 
-with open(old_file_location) as old_file:
+with open(OLD_FILE_LOCATION) as old_file:
     old_content = old_file.readlines()
-    old_content_stripped = [line.strip() for line in old_content]
+    print(f"Old content lines: {len(old_content)}")
+
+    old_content_stripped = remove_duplicates(line.strip() for line in old_content)
+    print(f"Old content lines after removing duplicates: {len(old_content_stripped)}")
+
+    print(f"Total duplicates removed: {len(old_content) - len(old_content_stripped)}")
 
 
-with open(new_file_location) as new_file:
+with open(NEW_FILE_LOCATION) as new_file:
     new_content = new_file.readlines()
-    new_content_stripped = [line.strip() for line in new_content]
+
+    # Removing the "#" comments out and any blank spaces that might have been added
+    new_content_stripped = [line.strip() for line in new_content if "#" not in line and not str.isspace(line)]
 
 # Getting the new lines that were added
 new_domains = []
@@ -19,7 +32,7 @@ for line in new_content_stripped:
         new_domains.append(line)
 
 # Printing the new domains
-print("New disavowed domains: (Paste these in the Negative SEO sheet) \n")
+print("\nNew disavowed domains: (Paste these in the Negative SEO sheet)\n")
 for i in new_domains:
     print(i)
 
