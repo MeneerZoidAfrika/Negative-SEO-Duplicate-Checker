@@ -1,8 +1,12 @@
+import datetime
 
-CLIENT = "Canalwalk"
 
-OLD_FILE_LOCATION = "GSC-OLD-DISAVOW-CANALWALK.txt"
-NEW_FILE_LOCATION = "SEM-NEW-DISAVOW-CANALWALK.txt"
+CLIENT = "Woodlands"
+
+
+
+OLD_FILE_LOCATION = "OLD-DISAVOW-Woodlands-GSC.txt"
+NEW_FILE_LOCATION = "NEW-DISAVOW-Woodlands-SEM.txt"
 
 def remove_duplicates(input_list):
     output_list = []
@@ -11,16 +15,22 @@ def remove_duplicates(input_list):
             output_list.append(item)
     return output_list
 
+def get_current_date_and_time():
+    return datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
+
+
+# Opening the Old File
 with open(OLD_FILE_LOCATION) as old_file:
     old_content = old_file.readlines()
     print(f"Old content lines: {len(old_content)}")
 
+    # Making a list of all lines in the old file and removing duplicates
     old_content_stripped = remove_duplicates(line.strip() for line in old_content)
     print(f"Old content lines after removing duplicates: {len(old_content_stripped)}")
 
     print(f"Total duplicates removed: {len(old_content) - len(old_content_stripped)}")
 
-
+# Opening the New File
 with open(NEW_FILE_LOCATION) as new_file:
     new_content = new_file.readlines()
 
@@ -42,7 +52,7 @@ for i in new_domains:
 print(f"\nTotal new domains disavowed: {len(new_domains)}")
 
 # Writing a text file with the OLD and NEW disavowed links to put in Google Search Console
-with open(f"{CLIENT} NEW_DISAVOWED + OLD_DISAVOWED.txt", "w") as new_disavowed_old_disavowed:
+with open(f"{CLIENT} NEW_DISAVOWED+OLD_DISAVOWED_{str(get_current_date_and_time())}.txt", "w") as new_disavowed_old_disavowed:
     for i in old_content_stripped:
         new_disavowed_old_disavowed.writelines(f"{i}\n")
 
